@@ -1,0 +1,2 @@
+# SorteioPy
+Automação de sorteio
