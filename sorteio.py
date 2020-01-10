@@ -63,7 +63,7 @@ class sorteio:
     def listar_seguidores(self, qtd):
         li = len(self.driver.find_elements_by_xpath(
             '/html/body/div[4]/div/div[2]/ul/div/li//a'))
-
+        qtd = 30
         while li <= qtd:
             self.driver.find_elements_by_xpath(
                 '/html/body/div[4]/div/div[2]/ul/div/li//a')[-1].location_once_scrolled_into_view
@@ -75,17 +75,45 @@ class sorteio:
         links = self.driver.find_elements_by_xpath(
             '/html/body/div[4]/div/div[2]/ul/div/li//a')
 
-        seguidores = []
+        self.seguidores = []
 
         for link in links:
             if len(link.text) > 2:
-                seguidores.append(link.text)
+                self.seguidores.append(link.text)
                 print(f'Adicionando {link.text} na lista!!!')
         
         self.marcar_seguidores()
+        
 
     def marcar_seguidores(self):
         self.driver.get(self.url)
+        qtd = int(len(self.seguidores)/self.qtd_pessoas)
+        
+        i = len(self.driver.find_elements_by_xpath(
+            '/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea'))
+
+        while i < 1:
+            sleep(1)
+            i = len(self.driver.find_elements_by_xpath(
+               '/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea'))
+
+        for i in range(qtd):
+            self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea').location_once_scrolled_into_view
+            self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea').clear()
+            comentario  = f'@{self.seguidores[0]} , @{self.seguidores[1]} , @{self.seguidores[2]}'
+            self.seguidores.pop(0) #retirar primeiro nome
+            self.seguidores.pop(1) 
+            self.seguidores.pop(2) 
+            print(f'Comentarios: {comentario}')
+            import ipdb; ipdb.set_trace()
+            self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea').send_keys(comentario)
+            self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/button').click()
+            sleep(1)
+            btn = self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div[1]/form/button')
+            while btn.get_property('disabled')== False:
+                sleep(2)
+            
+
     def deslogar(self):
         
         self.driver.find_element_by_xpath(
@@ -96,10 +124,12 @@ class sorteio:
 
 
 ig = sorteio()
-url = str(input('Digite o endereço do sorteio: '))
-qtd_pessoas = int(input('Digite a quantidade de pessoas por marcação: '))
+# url = str(input('Digite o endereço do sorteio: '))
+# qtd_pessoas = int(input('Digite a quantidade de pessoas por marcação: '))
+url = 'https://www.instagram.com/p/B7I-AZHFVGL/'
+qtd_pessoas = 3
 ig.setUp(url, qtd_pessoas)
-ig.login('teste', 'teste')
+ig.login('jameskelsom', 'Kelsomfire1')
 # ig.fechar()
 
 
