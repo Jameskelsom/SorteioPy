@@ -97,15 +97,15 @@ class sorteio:
             i = len(self.driver.find_elements_by_xpath(
                '/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea'))
 
+        self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea').location_once_scrolled_into_view
         for i in range(qtd):
-            self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea').location_once_scrolled_into_view
-            self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea').clear()
             comentario  = f'@{self.seguidores[0]} , @{self.seguidores[1]} , @{self.seguidores[2]}'
             self.seguidores.pop(0) #retirar primeiro nome
             self.seguidores.pop(1) 
             self.seguidores.pop(2) 
             print(f'Comentarios: {comentario}')
-            import ipdb; ipdb.set_trace()
+            sleep(5)
+            self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea').click()
             self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/textarea').send_keys(comentario)
             self.driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/article/div[2]/section[3]/div/form/button').click()
             sleep(1)
