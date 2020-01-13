@@ -129,7 +129,7 @@ ig = sorteio()
 url = 'https://www.instagram.com/p/B7I-AZHFVGL/'
 qtd_pessoas = 3
 ig.setUp(url, qtd_pessoas)
-ig.login('jameskelsom', 'Kelsomfire1')
+ig.login('login', 'senha')
 # ig.fechar()
 
 
