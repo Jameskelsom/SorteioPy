@@ -124,10 +124,8 @@ class sorteio:
 
 
 ig = sorteio()
-# url = str(input('Digite o endereço do sorteio: '))
-# qtd_pessoas = int(input('Digite a quantidade de pessoas por marcação: '))
-url = 'https://www.instagram.com/p/B7I-AZHFVGL/'
-qtd_pessoas = 3
+url = str(input('Digite o endereço do sorteio: '))
+qtd_pessoas = int(input('Digite a quantidade de pessoas por marcação: '))
 ig.setUp(url, qtd_pessoas)
 ig.login('login', 'senha')
 # ig.fechar()
