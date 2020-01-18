@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.keys import Keys
+from selenium import webdriver #import driver browser
+from selenium.webdriver.support.ui import WebDriverWait #import wait driver
+from selenium.webdriver.common.keys import Keys #import send keys
 from time import sleep
 from tqdm import tqdm
 
