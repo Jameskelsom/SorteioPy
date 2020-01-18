@@ -21,7 +21,7 @@ class sorteio:
         i = len(d.find_elements_by_name('username'))
 
         while i < 1:
-            sleep(1)
+            sleep(1) #while element display view true
             i = len(d.find_elements_by_name('username'))
 
         d.find_element_by_name('username').clear()
